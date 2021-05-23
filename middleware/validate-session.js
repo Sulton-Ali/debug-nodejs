@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
-var User = require('sequelize').import('../models/user');
+var User = require('../models/user');
 
 module.exports = function (req, res, next) {
+    console.log(req.body);
     if (req.method == 'OPTIONS') {
         next();   // allowing options as a method for request
     } else {
