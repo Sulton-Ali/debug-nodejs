@@ -5,8 +5,6 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user')();
 
 router.post('/signup', (req, res) => {
-    console.log(req.body.user);
-    console.log(bcrypt.hashSync(req.body.user.password, 10));
     User.create({
         full_name: req.body.user.full_name,
         username: req.body.user.username,
@@ -15,7 +13,6 @@ router.post('/signup', (req, res) => {
     })
     .then(
         function signupSuccess(user) {
-            console.log(user);
             let token = jwt.sign({ id: user.id }, 'lets_play_sum_games_man', { expiresIn: 60 * 60 * 24 });
             res.status(200).json({
                 user: user,
